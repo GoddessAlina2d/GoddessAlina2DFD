@@ -61,7 +61,7 @@ def update_profile():
     print("Profile update:", profile_resp.status_code, profile_resp.text)
 
     # Update profile image
-    with open("Profile.png", "rb") as img:
+    with open("Profile (1).png", "rb") as img:
         oauth.post("https://api.twitter.com/1.1/account/update_profile_image.json", files={"image": img})
 
     # Update banner
