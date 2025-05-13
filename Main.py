@@ -56,11 +56,11 @@ def update_profile():
     })
 
     # Update profile image
-    with open("profile.jpg", "rb") as img:
+    with open("Profile.png", "rb") as img:
         oauth.post("https://api.twitter.com/1.1/account/update_profile_image.json", files={"image": img})
 
     # Update banner
-    with open("banner.jpg", "rb") as banner:
+    with open("Banner.png", "rb") as banner:
         oauth.post("https://api.twitter.com/1.1/account/update_profile_banner.json", files={"banner": banner})
 
     return "Your Twitter profile was updated!"
