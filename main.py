@@ -52,7 +52,7 @@ def update_profile():
 
     # Update profile name & bio
     random_suffix = f"{random.randint(0, 9999):04}"  # Ensures 4 digits
-    new_name = f"ALINA-BOT-{random_suffix}"
+    new_name = f"Goddess Alina's simp #{random_suffix}"
 
     profile_resp = oauth.post(
         "https://api.twitter.com/1.1/account/update_profile.json",
