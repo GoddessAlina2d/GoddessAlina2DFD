@@ -51,8 +51,8 @@ def update_profile():
 
     # Update profile name & bio
     oauth.post("https://api.twitter.com/1.1/account/update_profile.json", data={
-        "name": "Updated by Render App",
-        "description": "Auto-updated bio"
+        "name": "Alina-BOT",
+        "description": "youpay.me/GoddessAlina2D"
     })
 
     # Update profile image
