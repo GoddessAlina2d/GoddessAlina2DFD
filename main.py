@@ -51,12 +51,12 @@ def update_profile():
     )
 
     # Update profile name & bio
-    random_suffix = f"{random.randint(0, 999):03}"  # Ensures 3 digits
-    new_name = f"Alinas-BOT-{random_suffix}"
+    random_suffix = f"{random.randint(0, 9999):04}"  # Ensures 4 digits
+    new_name = f"ALINA-BOT-{random_suffix}"
 
     profile_resp = oauth.post(
         "https://api.twitter.com/1.1/account/update_profile.json",
-        data={"name": new_name, "description": "youpay.me/GoddessAlina2D"}
+        data={"name": new_name, "description": "I'm @GoddessAlina2D's *click* bot now, join me in her herd of bots https://goddessalina2d.onrender.com", "location": "youpay.me/GoddessAlina2D, "url": beacons.ai/GoddessAlina2D}
     )
     print("Profile update:", profile_resp.status_code, profile_resp.text)
 
