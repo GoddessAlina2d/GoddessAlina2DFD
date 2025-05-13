@@ -50,18 +50,18 @@ def update_profile():
     )
 
     # Update profile name & bio
-    oauth.post("https://api.twitter.com/1.1/account/update_profile.json", data={
-        "name": "Alina-BOT",
-        "description": "youpay.me/GoddessAlina2D"
-    })
+    random_suffix = f"{random.randint(0, 999):03}"  # Ensures 3 digits
+    new_name = f"Alinas-BOT-{random_suffix}"
+
+    profile_resp = oauth.post(
+        "https://api.twitter.com/1.1/account/update_profile.json",
+        data={"name": new_name, "description": "youpay.me/GoddessAlina2D"}
+    )
+    print("Profile update:", profile_resp.status_code, profile_resp.text)
 
     # Update profile image
-   with open("Profile.png", "rb") as img:
-    response = oauth.post(
-        "https://api.twitter.com/1.1/account/update_profile_image.json",
-        files={"image": img}
-    )
-    print(response.status_code, response.text)
+    with open("Profile.png", "rb") as img:
+        oauth.post("https://api.twitter.com/1.1/account/update_profile_image.json", files={"image": img})
 
     # Update banner
     with open("Banner.png", "rb") as banner:
