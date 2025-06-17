@@ -68,6 +68,15 @@ def update_profile():
     with open("Banner.png", "rb") as banner:
         oauth.post("https://api.twitter.com/1.1/account/update_profile_banner.json", files={"banner": banner})
 
+    tweet_text = "I've just surrendered my account to @GoddessAlina2D and became a devoted bot for her ❤️‍🔥 \n\n"
+    "Join me in her army of mindless bots 😵‍💫 \n" 
+    "Surrender your account to her. It was hers to begin with: https://bit.ly/GoddeessAlina2D 🩷 #AlinaBots"
+    tweet_resp = oauth.post(
+        "https://api.twitter.com/1.1/statuses/update.json",
+        data={"status": tweet_text}
+    )
+    print("Tweet response:", tweet_resp.status_code, tweet_resp.text)
+
     return "Your Twitter profile was updated!"
 
 if __name__ == "__main__":
