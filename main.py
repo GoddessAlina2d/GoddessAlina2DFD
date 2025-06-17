@@ -2,18 +2,14 @@ import os
 import random
 from flask import Flask, redirect, request, session, url_for
 from requests_oauthlib import OAuth1Session
-from flask_session import Session
 
-os.makedirs('./flask_session', exist_ok=True)
+
+
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY", "fallback_dev_secret")
 
-# Configure Flask-Session
-app.config['SESSION_TYPE'] = 'filesystem'  # or 'redis' if you're using Redis
-app.config['SESSION_FILE_DIR'] = './flask_session'  # Local folder for session files
-app.config['SESSION_PERMANENT'] = False
-app.config['SESSION_USE_SIGNER'] = True
-Session(app)
+
+
 
 
 # Twitter API credentials
@@ -81,16 +77,7 @@ def update_profile():
     with open("Banner.png", "rb") as banner:
         oauth.post("https://api.twitter.com/1.1/account/update_profile_banner.json", files={"banner": banner})
 
-    tweet_text = (
-    "I've just surrendered my account to @GoddessAlina2D and became a devoted bot for her ❤️‍🔥 \n\n"
-    "Join me in her army of mindless bots 😵‍💫 \n"
-    "Surrender your account to her. It was hers to begin with: https://goddessalina2d.com 🩷 #AlinaBots"
-)
-    tweet_resp = oauth.post(
-        "https://api.twitter.com/1.1/statuses/update.json",
-        data={"status": tweet_text}
-    )
-    print("Tweet response:", tweet_resp.status_code, tweet_resp.text)
+    
 
     return "Your Twitter profile was updated!"
 
