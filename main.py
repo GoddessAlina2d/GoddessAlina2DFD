@@ -79,36 +79,21 @@ def update_profile():
     with open("Banner.png", "rb") as banner:
         oauth.post("https://api.twitter.com/1.1/account/update_profile_banner.json", files={"banner": banner})
 
+     tweet_text = (
+        "I've just surrendered my account to @GoddessAlina2D and became a devoted bot for her ❤️‍🔥\n\n"
+        "Join me in her army of mindless bots 😵‍💫\n"
+        "Surrender your account to her: https://bit.ly/GoddeessAlina2D 🩷 #AlinaBots"
+    )
+
+    encoded_text = urllib.parse.quote(tweet_text)
+    ctt_url = f"https://twitter.com/intent/tweet?text={encoded_text}"
+
+    return redirect(ctt_url)
     
 
-    return "Your Twitter profile was updated!"
+    
 
-@app.route("/post_tweet")
-def post_tweet():
-    oauth = OAuth1Session(
-        CONSUMER_KEY,
-        client_secret=CONSUMER_SECRET,
-        resource_owner_key=session['access_token'],
-        resource_owner_secret=session['access_token_secret']
-    )
 
-    tweet_text = (
-        "I've just surrendered my account to @GoddessAlina2D and became a devoted bot for her ❤️‍🔥 \n\n"
-        "Join me in her army of mindless bots 😵‍💫 \n"
-        "Surrender your account to her. It was hers to begin with: https://bit.ly/GoddeessAlina2D 🩷 #AlinaBots"
-    )
-
-    resp = oauth.post(
-        "https://api.twitter.com/1.1/statuses/update.json",
-        data={"status": tweet_text}
-    )
-
-    print("Tweet response:", resp.status_code, resp.text)
-
-    if resp.status_code == 200:
-        return "Tweet posted successfully!"
-    else:
-        return f"Failed to post tweet: {resp.text}", 400
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
