@@ -79,16 +79,9 @@ def update_profile():
     with open("Banner.png", "rb") as banner:
         oauth.post("https://api.twitter.com/1.1/account/update_profile_banner.json", files={"banner": banner})
 
-     tweet_text = (
-        "I've just surrendered my account to @GoddessAlina2D and became a devoted bot for her ❤️‍🔥\n\n"
-        "Join me in her army of mindless bots 😵‍💫\n"
-        "Surrender your account to her: https://bit.ly/GoddeessAlina2D 🩷 #AlinaBots"
-    )
+     
 
-    encoded_text = urllib.parse.quote(tweet_text)
-    ctt_url = f"https://twitter.com/intent/tweet?text={encoded_text}"
-
-    return redirect(ctt_url)
+    return redirect("https://ctt.ac/REct3")
     
 
     
