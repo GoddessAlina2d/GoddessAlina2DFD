@@ -2,10 +2,18 @@ import os
 import random
 from flask import Flask, redirect, request, session, url_for
 from requests_oauthlib import OAuth1Session
-
+from flask_session import Session
 
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY", "fallback_dev_secret")
+
+# Configure Flask-Session
+app.config['SESSION_TYPE'] = 'filesystem'  # or 'redis' if you're using Redis
+app.config['SESSION_FILE_DIR'] = './flask_session'  # Local folder for session files
+app.config['SESSION_PERMANENT'] = False
+app.config['SESSION_USE_SIGNER'] = True
+Session(app)
+
 
 # Twitter API credentials
 CONSUMER_KEY = os.getenv("CONSUMER_KEY")
