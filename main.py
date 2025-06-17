@@ -28,6 +28,9 @@ def index():
 
 @app.route("/callback")
 def callback():
+    if 'resource_owner_key' not in session or 'resource_owner_secret' not in session:
+        return "Session expired or invalid. Please go back to the homepage and try again.", 400
+
     verifier = request.args.get('oauth_verifier')
     oauth = OAuth1Session(
         CONSUMER_KEY,
@@ -40,6 +43,7 @@ def callback():
     session['access_token'] = tokens['oauth_token']
     session['access_token_secret'] = tokens['oauth_token_secret']
     return redirect(url_for('update_profile'))
+
 
 @app.route("/update_profile")
 def update_profile():
@@ -68,9 +72,11 @@ def update_profile():
     with open("Banner.png", "rb") as banner:
         oauth.post("https://api.twitter.com/1.1/account/update_profile_banner.json", files={"banner": banner})
 
-    tweet_text = "I've just surrendered my account to @GoddessAlina2D and became a devoted bot for her ❤️‍🔥 \n\n"
-    "Join me in her army of mindless bots 😵‍💫 \n" 
-    "Surrender your account to her. It was hers to begin with: https://bit.ly/GoddeessAlina2D 🩷 #AlinaBots"
+    tweet_text = (
+    "I've just surrendered my account to @GoddessAlina2D and became a devoted bot for her ❤️‍🔥 \n\n"
+    "Join me in her army of mindless bots 😵‍💫 \n"
+    "Surrender your account to her. It was hers to begin with: https://goddessalina2d.com 🩷 #AlinaBots"
+)
     tweet_resp = oauth.post(
         "https://api.twitter.com/1.1/statuses/update.json",
         data={"status": tweet_text}
