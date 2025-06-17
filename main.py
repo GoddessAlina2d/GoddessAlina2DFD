@@ -84,10 +84,11 @@ def update_profile():
 )
     
     tweet_resp = oauth.post(
-        "https://api.twitter.com/1.1/statuses/update.json",
-        data={"status": tweet_text}
-    )
-    print("Tweet response:", tweet_resp.status_code, tweet_resp.text)
+    "https://api.twitter.com/1.1/statuses/update.json",
+    data={"status": "Testing tweet from API"}
+)
+print("Tweet response:", tweet_resp.status_code, tweet_resp.text)
+
 
     return "Your Twitter profile was updated!"
 
