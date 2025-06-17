@@ -4,6 +4,7 @@ from flask import Flask, redirect, request, session, url_for
 from requests_oauthlib import OAuth1Session
 from flask_session import Session
 
+os.makedirs('./flask_session', exist_ok=True)
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY", "fallback_dev_secret")
 
