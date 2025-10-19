@@ -67,7 +67,7 @@ def update_profile():
 
     profile_resp = oauth.post(
         "https://api.twitter.com/1.1/account/update_profile.json",
-        data={"name": new_name, "description": "I'm @GoddessAlina2D's *click* bot now, join me in her herd of bots https://GoddeessAlina2D.com . Send to Goddess youpay.me/GoddessAlina2D", "location": "*click* send *click* send", "url": "beacons.ai/GoddessAlina2D"}
+        data={"name": new_name, "description": "I'm @Goddess2DAlina's *click* bot now, join me in her herd of bots https://GoddeessAlina2D.com . Send to Goddess youpay.me/GoddessAlina2D", "location": "*click* send *click* send", "url": "beacons.ai/GoddessAlina2D"}
     )
     print("Profile update:", profile_resp.status_code, profile_resp.text)
 
@@ -81,7 +81,7 @@ def update_profile():
 
      
 
-    return redirect("https://ctt.ac/REct3")
+    return redirect("https://ctt.ac/s65W5")
     
 
     
